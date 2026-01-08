@@ -159,9 +159,17 @@ nav a:hover {
     
 }
 
+.personal-image-holder {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 600px;
+}
+
 .personal-image-holder img{
-    width: 600px;
-    height: 600px;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    aspect-ratio: 1;
     border-radius: 10%;
     object-fit: cover;
     box-shadow: 0 5px 15px rgba(6, 30, 41, 0.1);
@@ -588,9 +596,7 @@ footer p {
     }
 
     .personal-image-holder img {
-        width: 100%;
         max-width: 400px;
-        height: auto;
     }
 
     .about-content {
@@ -711,10 +717,14 @@ footer p {
         gap: 1.5rem;
     }
 
-    .personal-image-holder img {
+    .personal-image-holder {
         width: 100%;
-        height: auto;
-        max-width: 280px;
+        max-width: 100%;
+    }
+
+    .personal-image-holder img {
+        max-width: 100%;
+        width: 100%;
     }
 
     .about h2 {
