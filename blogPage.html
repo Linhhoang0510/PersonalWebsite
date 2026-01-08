@@ -51,6 +51,36 @@
             gap: 2rem;
         }
 
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
         nav a {
             color: white;
             text-decoration: none;
@@ -506,6 +536,270 @@
             .comparison-table td {
                 padding: 0.8rem;
             }
+
+            .blog-intro {
+                padding: 1.5rem;
+                font-size: 1.05rem;
+            }
+
+            .blog-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .blog-content h2 {
+                font-size: 1.5rem;
+                margin: 2rem 0 1rem;
+            }
+
+            .context-card {
+                padding: 1.5rem;
+            }
+
+            .share-buttons {
+                gap: 0.8rem;
+            }
+
+            .share-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .example-table th,
+            .example-table td {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .visual-example {
+                padding: 1.5rem;
+            }
+
+            .highlight-box {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.5rem 0;
+            }
+
+            nav {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #061E29 0%, #1D546D 100%);
+                padding: 1.5rem;
+                gap: 1rem;
+                width: 100%;
+                z-index: 999;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav li {
+                width: 100%;
+            }
+
+            nav a {
+                display: block;
+                padding: 0.5rem 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .blog-hero {
+                padding: 6rem 1rem 2rem;
+                margin-top: 50px;
+            }
+
+            .blog-hero h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .blog-category-badge {
+                padding: 0.4rem 1rem;
+                font-size: 0.75rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 0.3rem;
+                font-size: 0.85rem;
+            }
+
+            .blog-intro {
+                padding: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .blog-content {
+                padding: 1rem;
+            }
+
+            .blog-content h2 {
+                font-size: 1.3rem;
+                margin: 1.5rem 0 0.8rem;
+                padding-bottom: 0.3rem;
+            }
+
+            .blog-content h3 {
+                font-size: 1.2rem;
+                margin: 1.5rem 0 0.8rem;
+            }
+
+            .blog-content p {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+
+            .context-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .context-card {
+                padding: 1.2rem;
+            }
+
+            .context-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .context-card h3 {
+                font-size: 1.5rem;
+                margin: 0 0 0.8rem 0;
+            }
+
+            .context-list li {
+                padding: 0.6rem 0 0.6rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .transition-flow {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .flow-step {
+                padding: 1rem;
+            }
+
+            .flow-step h4 {
+                font-size: 0.8rem;
+            }
+
+            .flow-step p {
+                font-size: 0.85rem;
+            }
+
+            .flow-arrow {
+                font-size: 1.5rem;
+                transform: rotate(90deg);
+            }
+
+            .example-table {
+                margin: 1.5rem 0;
+            }
+
+            .example-table th,
+            .example-table td {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .comparison-table {
+                margin: 1.5rem 0;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.6rem;
+                font-size: 0.8rem;
+            }
+
+            .visual-example {
+                padding: 1.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .visual-example h4 {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .highlight-box {
+                padding: 1.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .highlight-box h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .pro-tip {
+                padding: 1.2rem;
+                margin: 1.5rem 0;
+            }
+
+            .pro-tip strong {
+                font-size: 1rem;
+            }
+
+            .share-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .share-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .share-buttons {
+                gap: 0.5rem;
+                flex-direction: column;
+            }
+
+            .share-btn {
+                width: 100%;
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+                justify-content: center;
+            }
+
+            .back-link {
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+            }
+
+            footer p {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -514,7 +808,12 @@
     <header>
         <nav>
             <div class="logo">📊 Lilly Nguyen</div>
-            <ul>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#skills">Skills</a></li>
                 <li><a href="index.html#portfolio">Portfolio</a></li>
@@ -746,5 +1045,24 @@
     <footer>
         <p>&copy; 2026 Lilly Nguyen. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
