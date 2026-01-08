@@ -1,69 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Lilly's Website </title>
-        <link rel="stylesheet" type="text/css" href="mywebsite.css">
-    </head>
-    
-    <body class="body-black"> <!--Content Container-->
-        
-        <div class="container"> <!--Image and Name container-->
-            
-            <div class="image-container">
-                <img
-                    src="z6013403215050_0fdf5d78a3d815f82f94e1d71daf38e6.jpg"
-                    class="w3-margin"
-                    alt="Person Image"
-                    max-width="100%"
-                    height="250px"
-                    style="border-radius: 50%;"
-                />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilly Nguyen - Data Analyst Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">📊 Lilly Nguyen</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-                <div class="welcome-text">
-                    
-                    <p> Welcome to <span class="name-container"><strong>Lilly's </strong></span> Website</p>
-                    
-                    <p> <strong> See My Info & Project Here! </strong> </p>
-                
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Hello, I'm Lilly Nguyen</h1>
+        <p>Data Analyst & Developer | Power BI Expert | Turning Data into Strategic Insights</p>
+        <p class="hero-subtitle">BSc Finance (Accounting) | MSc Data Science | Driving business growth through scalable analytics solutions and data-driven decision making</p>
+        <a href="#portfolio" class="cta-button">View My Work</a>
+        <a href="#contact" class="cta-button secondary">Get In Touch</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="personal-image-holder">
+            <img src="me.jpg" alt="person">
+        </div>
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>I'm a Data Analyst & Developer with a Master's degree in Data Science and proven expertise in delivering scalable, value-driven data products from concept through deployment and continuous optimization. I specialize in transforming complex datasets into actionable insights that drive strategic business decisions and measurable outcomes.</p>
+            
+            <p>With expert-level Power BI skills including advanced DAX, dynamic reporting, custom visuals, and performance tuning, I have a strong track record of creating interactive dashboards that directly inform sales, marketing, and operational strategies. My experience spans multi-source data integration, ETL pipeline automation, cloud platforms (AWS, Azure), and data governance frameworks.</p>
+            
+            <p>I thrive in Agile environments and excel at collaborating with stakeholders at all levels, translating complex business requirements into high-impact reporting solutions. My passion lies in leveraging data to solve real-world problems, optimize processes, and unlock new growth opportunities.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <img class="skill-icon" src="https://img.icons8.com/fluency/48/power-bi-2021.png" alt="power-bi-2021"/>
+                    <h3>Business Intelligence & Visualization</h3>
+                    <ul>
+                        <li>Power BI (Advanced DAX, Power Query)</li>
+                        <li>Tableau & Tableau Prep Builder</li>
+                        <li>Dynamic Reporting & Custom Visuals</li>
+                        <li>Performance Tuning & Optimization</li>
+                        <li>Dashboard Development & KPI Tracking</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <img class="skill-icon" src="https://img.icons8.com/fluency/48/sql.png" alt="sql"/>
+                    <h3>Data Engineering & Analytics</h3>
+                    <ul>
+                        <li>SQL (Advanced Querying & Database Management)</li>
+                        <li>ETL/ELT Processes & Pipeline Automation</li>
+                        <li>Data Modeling & Architecture</li>
+                        <li>Database Design</li>
+                        <li>Data Governance</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <img class="skill-icon" src="https://img.icons8.com/color/48/amazon-web-services.png" alt="amazon-web-services"/>
+                    <h3>Cloud & Integration Technologies</h3>
+                    <ul>
+                        <li>AWS (S3, Lambda, API Gateway, DynamoDB)</li>
+                        <li>AWS IoT Core & EventBridge</li>
+                        <li>Microsoft Azure (AI Engineer Associate)</li>
+                        <li>Multi-source Data Integration</li>
+                        <li>Cloud Migration & Digital Transformation</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <img class="skill-icon" src="https://img.icons8.com/color/48/python--v1.png" alt="python--v1"/>
+                    <h3>Programming & Development</h3>
+                    <ul>
+                        <li>Python (Data Analysis & Automation)</li>
+                        <li>R (Statistical Analysis)</li>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>Git & GitHub Version Control</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <img class="skill-icon" src="https://img.icons8.com/bubbles/100/combo-chart.png" alt="combo-chart"/>
+                    <h3>Analytics & Data Science</h3>
+                    <ul>
+                        <li>Excel (Advanced Formulas & Analysis)</li>
+                        <li>Google Analytics (GA4) & LinkedIn Analytics</li>
+                        <li>Statistical Analysis & Machine Learning</li>
+                        <li>Natural Language Processing (NLP)</li>
+                        <li>Large Language Models (LLMs)</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <img class="skill-icon" src="https://img.icons8.com/plasticine/100/statistics.png" alt="statistics"/>
+                    <h3>Project Management & Collaboration</h3>
+                    <ul>
+                        <li>Agile & Scrum Methodologies</li>
+                        <li>Jira (Sprint Planning & Task Tracking)</li>
+                        <li>Figma (UI/UX Design & Prototyping)</li>
+                        <li>Stakeholder Communication</li>
+                        <li>Cross-functional Team Leadership</li>
+                    </ul>
                 </div>
             </div>
-            <br>
-            
-            <!-- Links section 1 -->
-            <div class="links-container">
-                <a href="https://www.linkedin.com/in/lilly-nguyen-74217823a/" class="link-button" target="_blank">
-                    <i class="linkedin"></i> LinkedIn
-                </a>
-            
-                <a href="https://github.com/Linhhoang0510" class="link-button" target="_blank"> 
-                    <i class="kaggle"></i> GitHub
-                </a>
-                
-                <a href="https://mavenanalytics.io/profile/lillynguyen0510" class="link-button" target="_blank">
-                    <i class="powerbi"></i> Power BI
-                </a>
-
-                <a href="https://public.tableau.com/app/profile/linh6202/vizzes" class="link-button" target="_blank">
-                    <i class="tableau"></i> Tableau
-                </a>
-        
-                <p> Contact me: +44 7920 677761 or 
-                    <a href = "mailto: linh.nhk0510@gmai.com" class = 'link-button-1' target="_blank">
-                        <i class="email"></i> email
-                    </a>
-                </p>
-                
-            </div>
-
         </div>
-        
-    </body>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Data Analytics Projects</h2>
+            <p style="text-align: center;">Updating...</p>
+            <!--
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="https://img.icons8.com/fluency/96/power-bi-2021.png" alt="power-bi"/>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Digital Marketing Analytics Dashboard</h3>
+                        <div class="portfolio-tags">
+                            <span class="tag">Power BI</span>
+                            <span class="tag">DAX</span>
+                            <span class="tag">GA4 API</span>
+                            <span class="tag">ETL</span>
+                        </div>
+                        <p>Integrated multi-channel marketing performance dashboard tracking user engagement, conversion rates, CAC, and traffic attribution. Automated ETL processes resulted in 196% increase in active users and optimized marketing ROI through data-driven budget reallocation.</p>
+                        <a href="#" class="portfolio-link">View Project →</a>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2>Blog & Resources</h2>
+            <p class="blog-intro">Sharing insights, cheat sheets, and practical guides on data analytics, Power BI, and business intelligence best practices.</p>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <img src="https://img.icons8.com/bubbles/100/book.png" alt="cheat-sheet"/>
+                        <div class="blog-category">Power BI</div>
+                    </div>
+                    <div class="blog-body">
+                        <h3>Power BI Context</h3>
+                        <p class="blog-date">08 Jan 2026</p>
+                        <p>A basic guide to understanding Filter Context vs Row Context in Power BI DAX formulas </p>
+                        <a href="blogPage.html" class="blog-link">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>Interested in collaborating or discussing data analytics opportunities? Feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:lillyforwork0510@gmail.com" class="contact-link">
+                    <img src="https://img.icons8.com/fluency/48/email-open.png" alt="email"/>
+                    Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/lilly-nguyen-74217823a/" class="contact-link" target="_blank">
+                    <img src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin"/>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/Linhhoang0510" class="contact-link" target="_blank">
+                    <img src="https://img.icons8.com/fluency/48/github.png" alt="github"/>
+                    GitHub
+                </a>
+                <a href="#" class="contact-link" target="_blank">
+                    <img src="https://img.icons8.com/color/48/tableau-software.png" alt="tableau"/>
+                    Tableau Public
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Lilly Nguyen. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card, .portfolio-item, .blog-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
-
-
-
-
-
-

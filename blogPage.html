@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAX Context Decoded: Mastering Filter Context and Row Context | Lilly Nguyen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #061E29;
+            background: #F3F4F4;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #061E29 0%, #1D546D 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(6, 30, 41, 0.2);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #5F9598;
+        }
+
+        /* Blog Header */
+        .blog-hero {
+            background: linear-gradient(135deg, #061E29 0%, #1D546D 100%);
+            color: white;
+            padding: 8rem 2rem 3rem;
+            margin-top: 60px;
+        }
+
+        .blog-hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .blog-category-badge {
+            display: inline-block;
+            background: #5F9598;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .blog-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Blog Content */
+        .blog-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: white;
+        }
+
+        .blog-intro {
+            font-size: 1.2rem;
+            color: #1D546D;
+            padding: 2rem;
+            background: #F3F4F4;
+            border-left: 4px solid #5F9598;
+            border-radius: 5px;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .blog-content h2 {
+            font-size: 2rem;
+            color: #1D546D;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #5F9598;
+        }
+
+        .blog-content h3 {
+            font-size: 1.5rem;
+            color: #061E29;
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-content p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            color: #061E29;
+            opacity: 0.9;
+        }
+
+        .blog-content strong {
+            color: #1D546D;
+            font-weight: 600;
+        }
+
+        /* Context Comparison Cards */
+        .context-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .context-card {
+            background: #F3F4F4;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(6, 30, 41, 0.08);
+            border-top: 4px solid #5F9598;
+        }
+
+        .context-card.filter {
+            border-top-color: #1D546D;
+        }
+
+        .context-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .context-card h3 {
+            font-size: 1.8rem;
+            color: #061E29;
+            margin: 0 0 1rem 0;
+        }
+
+        .context-card .analogy {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #1D546D;
+        }
+
+        .context-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .context-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #061E29;
+            border-bottom: 1px solid rgba(29, 84, 109, 0.1);
+        }
+
+        .context-list li:last-child {
+            border-bottom: none;
+        }
+
+        .context-list li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #5F9598;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .context-list strong {
+            color: #1D546D;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #1D546D 0%, #5F9598 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(29, 84, 109, 0.3);
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .highlight-box p {
+            color: white;
+            opacity: 0.95;
+            margin: 0;
+        }
+
+        /* Visual Example Box */
+        .visual-example {
+            background: #F3F4F4;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 2px solid #5F9598;
+        }
+
+        .visual-example h4 {
+            color: #1D546D;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Table */
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            box-shadow: 0 3px 10px rgba(6, 30, 41, 0.08);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .example-table th {
+            background: #1D546D;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .example-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #F3F4F4;
+        }
+
+        .example-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .example-table tr:hover {
+            background: #F3F4F4;
+        }
+
+        /* Context Transition Flow */
+        .transition-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #F3F4F4;
+            border-radius: 10px;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(6, 30, 41, 0.08);
+        }
+
+        .flow-step h4 {
+            color: #1D546D;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .flow-step p {
+            color: #061E29;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: #5F9598;
+            font-weight: bold;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 20px rgba(6, 30, 41, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .comparison-table thead {
+            background: linear-gradient(135deg, #061E29 0%, #1D546D 100%);
+            color: white;
+        }
+
+        .comparison-table th {
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #F3F4F4;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #F3F4F4;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: #1D546D;
+        }
+
+        /* Pro Tip Box */
+        .pro-tip {
+            background: #FFF8E1;
+            border-left: 4px solid #FFB300;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .pro-tip strong {
+            color: #FF8F00;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .pro-tip p {
+            margin: 0;
+            color: #5D4037;
+        }
+
+        /* Share Section */
+        .share-section {
+            background: #F3F4F4;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .share-section h3 {
+            color: #1D546D;
+            margin-bottom: 1rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .share-btn.linkedin {
+            background: #0077B5;
+            color: white;
+        }
+
+        .share-btn.twitter {
+            background: #1DA1F2;
+            color: white;
+        }
+
+        .share-btn.facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        /* Back to Blog */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #5F9598;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #1D546D;
+        }
+
+        /* Footer */
+        footer {
+            background: #061E29;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            color: rgba(243, 244, 244, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-hero h1 {
+                font-size: 2rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .context-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .transition-flow {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">📊 Lilly Nguyen</div>
+            <ul>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Hero -->
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <span class="blog-category-badge">Power BI Tutorial</span>
+            <h1>DAX Context Decoded: Mastering Filter Context and Row Context</h1>
+            <div class="blog-meta">
+                <span class="blog-meta-item">
+                    👤 By Lilly Nguyen
+                </span>
+                <span class="blog-meta-item">
+                    📅 January 2026
+                </span>
+                <span class="blog-meta-item">
+                    ⏱️ 8 min read
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <article class="blog-content">
+        <a href="index.html#blog" class="back-link">← Back to Blog</a>
+
+        <div class="blog-intro">
+            DAX "context" used to confuse me deeply when I first started Power BI. If you've ever been confused by why your formulas aren't calculating as expected, you aren't alone. Mastering the difference between Filter Context and Row Context is the single most critical step in your Power BI journey.
+        </div>
+
+        <p>When I first started working with Power BI, I would create what seemed like perfectly logical DAX formulas, only to have them return completely unexpected results. The frustration was real! After diving deep into understanding DAX contexts, everything clicked into place. Today, I'm sharing this knowledge with you to help you avoid the same confusion I experienced.</p>
+
+        <h2>The Two Pillars of DAX</h2>
+
+        <p>Every formula in Power BI is evaluated in a specific context. Think of this as the "environment" the formula lives in. Understanding these two distinct types of context is fundamental to mastering DAX and creating reliable, accurate reports.</p>
+
+        <div class="context-cards">
+            <div class="context-card filter">
+                <span class="context-icon">🌪️</span>
+                <h3>Filter Context</h3>
+                <div class="analogy">
+                    <strong>Analogy:</strong> Acts like a "set of funnels" that shrink your data
+                </div>
+                <p><strong>Key Question:</strong> "What data is being looked at?"</p>
+                <ul class="context-list">
+                    <li><strong>Scope:</strong> Operates on the entire Data Model</li>
+                    <li><strong>Primary Goal:</strong> To aggregate data (Sum, Average, Count)</li>
+                    <li><strong>Created by:</strong> Slicers, Visual Selections, and Filter Pane</li>
+                    <li><strong>Effect:</strong> Automatically filters everything before calculations</li>
+                </ul>
+            </div>
+
+            <div class="context-card">
+                <span class="context-icon">🔍</span>
+                <h3>Row Context</h3>
+                <div class="analogy">
+                    <strong>Analogy:</strong> Acts like a "scanner" or finger pointing at a specific row
+                </div>
+                <p><strong>Key Question:</strong> "Which specific row am I on?"</p>
+                <ul class="context-list">
+                    <li><strong>Scope:</strong> Operates on a single table</li>
+                    <li><strong>Primary Goal:</strong> To iterate row-by-row for calculations</li>
+                    <li><strong>Created by:</strong> Calculated Columns and X-Functions (Iterators)</li>
+                    <li><strong>Effect:</strong> Does NOT filter unless you force it</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Filter Context: The "Environment"</h2>
+
+        <p>Filter context tells DAX to throw away data that doesn't match your criteria before it does any math. It is the active set of filters from Slicers, Visuals, and the Filter Pane. This is what makes your reports interactive and dynamic.</p>
+
+        <div class="visual-example">
+            <h4>📊 Visual Example: Aggregated Sales Data</h4>
+            <p>Imagine you have applied a Slicer for "Year 2023". The chart doesn't see all your historical data; it only sees the aggregated totals allowed by that filter. This is Filter Context in action—automatically shrinking your dataset to show only relevant information.</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3>🔑 Key Takeaway</h3>
+            <p>You can modify Filter Context using the <strong style="color: white;">"CALCULATE"</strong> function. This is one of the most powerful functions in DAX, allowing you to override existing filters or add new ones to change what data your calculation sees.</p>
+        </div>
+
+        <h2>Row Context: The "Iteration"</h2>
+
+        <p>Row context is DAX's ability to know which row it is currently processing. It is essential for calculated columns or iterators like SUMX, AVERAGEX, and other X-functions. Unlike Filter Context, Row Context doesn't automatically filter your data—it simply knows where it is in the table.</p>
+
+        <div class="visual-example">
+            <h4>🔍 Table Example: Row-by-Row Calculation</h4>
+            <table class="example-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Line Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apple 🍎</td>
+                        <td>2</td>
+                        <td>$1.00</td>
+                        <td>$2.00</td>
+                    </tr>
+                    <tr>
+                        <td>Banana 🍌</td>
+                        <td>5</td>
+                        <td>$0.50</td>
+                        <td>$2.50</td>
+                    </tr>
+                    <tr>
+                        <td>Cherry 🍒</td>
+                        <td>10</td>
+                        <td>$0.20</td>
+                        <td>$2.00</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>In this table, the calculation <code>LineTotal = [Qty] * [Price]</code> happens row by row. For the first row, it sees ONLY Apple's data (2 × $1.00 = $2.00). This is Row Context at work.</p>
+        </div>
+
+        <div class="pro-tip">
+            <strong>⚠️ Critical rule:</strong>
+            <p>Row Context does NOT filter the table. If you ask for SUM(Sales[Amount]) inside a row context, it will still sum the WHOLE table, unless you use Context Transition.</p>
+        </div>
+
+        <h2>The Bridge: Context Transition ✨</h2>
+
+        <p>This is the advanced magic that connects both worlds. When you wrap a calculation in <strong>CALCULATE()</strong> while inside a Row Context, DAX converts that "Row" into a "Filter." This is called Context Transition, and it's absolutely crucial for understanding how measures work inside iterators.</p>
+
+        <div class="transition-flow">
+            <div class="flow-step">
+                <h4>Step 1</h4>
+                <p><strong>Row Context</strong></p>
+                <p>You are iterating on a specific row (e.g., Product = "Apple")</p>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+                <h4>The Magic</h4>
+                <p><strong>CALCULATE()</strong></p>
+                <p>The engine is invoked to change context</p>
+            </div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-step">
+                <h4>Result</h4>
+                <p><strong>Filter Context</strong></p>
+                <p>The "Apple" row becomes a filter: Product = "Apple"</p>
+            </div>
+        </div>
+
+        <div class="pro-tip">
+            <strong>💡 Pro tip:</strong>
+            <p>This happens automatically whenever you use a Measure inside an Iterator (like SUMX). Measures have a hidden CALCULATE wrapped around them! This is why measures behave differently than calculated columns—they automatically trigger context transition.</p>
+        </div>
+
+        <h2>The Ultimate Comparison</h2>
+
+        <p>Here's a comprehensive side-by-side comparison to help you remember the key differences between Filter Context and Row Context:</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Filter Context 🌪️</th>
+                    <th>Row Context 🔍</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Goal</td>
+                    <td>Aggregation (Reducing data)</td>
+                    <td>Iteration (Calculating row-by-row)</td>
+                </tr>
+                <tr>
+                    <td>Initiator</td>
+                    <td>Visuals, Slicers, Filter Pane</td>
+                    <td>X-Functions (SUMX), Calculated Columns</td>
+                </tr>
+                <tr>
+                    <td>Scope</td>
+                    <td>Global (Entire Data Model)</td>
+                    <td>Local (Single Table Only)</td>
+                </tr>
+                <tr>
+                    <td>Filtering Power</td>
+                    <td>Filters everything automatically</td>
+                    <td>Does NOT filter unless forced</td>
+                </tr>
+                <tr>
+                    <td>Analogy</td>
+                    <td>"A set of funnels"</td>
+                    <td>"A scanner"</td>
+                </tr>
+                <tr>
+                    <td>Modification</td>
+                    <td>Use CALCULATE() to override</td>
+                    <td>Use CALCULATE() to create filter</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Practical Takeaways</h2>
+
+        <p>Understanding DAX context transformed my approach to Power BI development. Here are the key lessons I've learned that will help you master these concepts:</p>
+
+        <p><strong>1. Always identify which context you're working in.</strong> Before writing any DAX formula, ask yourself: "Am I aggregating data (Filter Context) or iterating through rows (Row Context)?"</p>
+
+        <p><strong>2. Remember that measures always work in Filter Context.</strong> This is why they're perfect for aggregations and why they automatically trigger context transition when used inside iterators.</p>
+
+        <p><strong>3. Use CALCULATE() strategically.</strong> This function is your bridge between contexts. Master it, and you'll unlock the full power of DAX.</p>
+
+        <p><strong>4. Practice with real scenarios.</strong> The best way to internalize these concepts is to experiment with your own data and observe how different contexts affect your calculations.</p>
+
+        <div class="highlight-box">
+            <h3>🎯 Final Thoughts</h3>
+            <p>Mastering Filter Context and Row Context is not just about memorizing rules—it's about developing an intuition for how DAX thinks. Once you understand these foundational concepts, complex formulas become logical and predictable. You'll spend less time debugging and more time creating powerful, accurate reports that drive real business value.</p>
+        </div>
+
+        <a href="index.html#blog" class="back-link">← Back to Blog</a>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Lilly Nguyen. All rights reserved.</p>
+    </footer>
+</body>
+</html>
