@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI Storage Modes - Cheat Sheet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/blogPage.css">
+</head>
+<body>
+    <!-- Header - Using same structure as blogPage.html -->
+    <header>
+        <nav>
+            <div class="logo">📊 Lilly Nguyen</div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Blog Hero - Using same structure as blogPage.html -->
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <span class="blog-category-badge">Power BI Tutorial</span>
+            <h1>Power BI Storage Modes</h1>
+            <p class="blog-subtitle">Choosing the Right Storage Mode in Power BI</p>
+            <div class="blog-meta">
+                <span class="blog-meta-item">
+                    👤 By Lilly Nguyen
+                </span>
+                <span class="blog-meta-item">
+                    📅 February 1st 2026
+                </span>
+                <span class="blog-meta-item">
+                    ⏱️ 5 min read
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content - Using same structure as blogPage.html -->
+    <article class="blog-content">
+        <a href="index.html#blog" class="back-link">← Back to Blog</a>
+
+        <div class="blog-intro">
+            Power BI has <strong>3 storage modes</strong> for tables: <strong>Import, DirectQuery, and Dual </strong>. These can be combined in a <strong>Composite Model</strong> where different tables use different storage modes.
+        </div>
+
+        <p>Whether you're dealing with a small departmental report or a massive enterprise data warehouse, understanding the nuances between Import, DirectQuery, and Dual modes—and how to combine them in Composite Models—is essential. Let's dive into the details that will transform how you architect your Power BI solutions.</p>
+
+        <!-- Section Navigation Bar -->
+        <!--nav class="section-nav">
+            <div class="nav-container">
+                <a href="#comparison" class="nav-link"><i class="fas fa-table"></i> Quick Comparison</a>
+                <a href="#storage-modes" class="nav-link"><i class="fas fa-cubes"></i> Storage Modes</a>
+                <a href="#composite" class="nav-link"><i class="fas fa-layer-group"></i> Composite Models</a>
+                <a href="#memory-limits" class="nav-link"><i class="fas fa-memory"></i> Memory Limits</a>
+                <a href="#vertipaq" class="nav-link"><i class="fas fa-compress"></i> VertiPaq</a>
+                <a href="#decision-tree" class="nav-link"><i class="fas fa-sitemap"></i> Decision Tree</a>
+                <a href="#best-practices" class="nav-link"><i class="fas fa-lightbulb"></i> Best Practices</a>
+                <a href="#scenarios" class="nav-link"><i class="fas fa-briefcase"></i> Scenarios</a>
+            </div>
+        </nav-->
+
+        <!-- Quick Comparison Table -->
+        <section id="comparison">
+            <h2><i class="fas fa-table"></i> Quick Comparison</h2>
+            <div class="table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th><span class="mode-badge import">Import</span></th>
+                            <th><span class="mode-badge directquery">DirectQuery</span></th>
+                            <th><span class="mode-badge dual">Dual</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Location</strong></td>
+                            <td>In-memory (cached)</td>
+                            <td>Source database</td>
+                            <td>Import + DirectQuery</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td><span class="status excellent">Excellent</span></td>
+                            <td><span class="status poor">Variable</span></td>
+                            <td><span class="status good">Good</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Freshness</strong></td>
+                            <td><span class="status poor">Scheduled</span></td>
+                            <td><span class="status excellent">Real-time</span></td>
+                            <td><span class="status good">Mixed</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dataset Size</strong></td>
+                            <td>Limited by memory</td>
+                            <td>Unlimited</td>
+                            <td>Limited by memory</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DAX Support</strong></td>
+                            <td><span class="status excellent">Full</span></td>
+                            <td><span class="status poor">Limited</span></td>
+                            <td><span class="status excellent">Full</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Storage Mode Detailed Table -->
+        <section id="storage-modes">
+            <h2><i class="fas fa-cubes"></i> Storage Modes Explained</h2>
+            
+            
+            <div class="table-wrapper">
+                <table class="detailed-modes-table">
+                    <thead>
+                        <tr>
+                            <th class="category-col">Category</th>
+                            <th class="import-col">
+                                <div class="mode-header-cell">
+                                    <i class="fas fa-download"></i>
+                                    <span>Import</span>
+                                    <span class="default-badge">DEFAULT</span>
+                                </div>
+                            </th>
+                            <th class="directquery-col">
+                                <div class="mode-header-cell">
+                                    <i class="fas fa-plug"></i>
+                                    <span>DirectQuery</span>
+                                    <span class="realtime-badge">REAL-TIME</span>
+                                </div>
+                            </th>
+                            <th class="dual-col">
+                                <div class="mode-header-cell">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>Dual</span>
+                                    <span class="hybrid-badge">HYBRID</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Description Row -->
+                        <tr class="description-row">
+                            <td class="category-cell"><i class="fas fa-info-circle"></i> <strong>Description</strong></td>
+                            <td>Data loaded and compressed into Power BI's in-memory engine (VertiPaq). Most common and fastest mode.</td>
+                            <td>Queries sent directly to source database in real-time. No data stored in Power BI.</td>
+                            <td>Tables act as either Import or DirectQuery depending on context. Power BI auto-selects best option.</td>
+                        </tr>
+                        
+                        <!-- Benefits Section -->
+                        <tr class="section-header">
+                            <td colspan="4"><i class="fas fa-check-circle"></i> <strong style="color: white;">Benefits</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Performance</td>
+                            <td class="benefit-cell">⚡ Blazing fast - all queries from memory</td>
+                            <td class="neutral-cell">Variable - depends on database</td>
+                            <td class="benefit-cell">⚡ Fast when cached</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Data Freshness</td>
+                            <td class="neutral-cell">Scheduled refreshes only</td>
+                            <td class="benefit-cell">✓ (Near) Real-time, always current</td>
+                            <td class="benefit-cell">✓ Mixed (fresh + cached)</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Dataset Size</td>
+                            <td class="neutral-cell">Limited by memory (1-10 GB typical)</td>
+                            <td class="benefit-cell">✓ Unlimited - stays at source</td>
+                            <td class="neutral-cell">Limited for cached tables</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">DAX Support</td>
+                            <td class="benefit-cell">✓ Full functionality</td>
+                            <td class="bottleneck-cell">⚠ Limited functions</td>
+                            <td class="benefit-cell">✓ Full functionality</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Compression</td>
+                            <td class="benefit-cell">✓ Excellent (10:1 typical)</td>
+                            <td class="neutral-cell">N/A - no storage</td>
+                            <td class="benefit-cell">✓ For cached tables</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Offline Access</td>
+                            <td class="benefit-cell">✓ Works without connection</td>
+                            <td class="bottleneck-cell">✗ Requires connectivity</td>
+                            <td class="neutral-cell">Partial</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Data Source Support</td>
+                            <td class="benefit-cell">✓ All PBI sources (databases, files, feeds, web, dataflows, etc.)</td>
+                            <td class="bottleneck-cell">⚠ Only major relational databases, PBI datasets, Analysis Services</td>
+                            <td class="benefit-cell">✓ Same as Import</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Power Query (M) Support</td>
+                            <td class="benefit-cell">✓ All transformations</td>
+                            <td class="bottleneck-cell">⚠ Limited - must translate to native SQL</td>
+                            <td class="benefit-cell">✓ All transformations</td>
+                        </tr>
+                        
+                        <!-- Bottlenecks Section -->
+                        <tr class="section-header">
+                            <td colspan="4"><i class="fas fa-exclamation-triangle"></i> <strong style="color: white;">Bottlenecks & Limitations</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Data Staleness</td>
+                            <td class="bottleneck-cell">⚠ Requires scheduled refreshes</td>
+                            <td class="benefit-cell">✓ Always fresh</td>
+                            <td class="neutral-cell">Mixed</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Memory Limits</td>
+                            <td class="bottleneck-cell">⚠ Large datasets need Premium</td>
+                            <td class="benefit-cell">✓ No limits</td>
+                            <td class="bottleneck-cell">⚠ For cached data</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Query Speed</td>
+                            <td class="benefit-cell">✓ Sub-second responses</td>
+                            <td class="bottleneck-cell">⚠ Each query hits database</td>
+                            <td class="neutral-cell">Variable</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Database Load</td>
+                            <td class="benefit-cell">✓ No impact after refresh</td>
+                            <td class="bottleneck-cell">⚠ Can overwhelm source</td>
+                            <td class="bottleneck-cell">⚠ For DirectQuery tables</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Complexity</td>
+                            <td class="benefit-cell">✓ Simple to understand</td>
+                            <td class="neutral-cell">Moderate</td>
+                            <td class="bottleneck-cell">⚠ Harder to predict</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Refresh Time</td>
+                            <td class="bottleneck-cell">⚠ Can take hours for large data</td>
+                            <td class="benefit-cell">✓ No refresh needed</td>
+                            <td class="neutral-cell">For Import tables</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Source System Impact</td>
+                            <td class="benefit-cell">✓ Impact only during refresh</td>
+                            <td class="bottleneck-cell">⚠ Every user query hits source (OLTP impact risk)</td>
+                            <td class="bottleneck-cell">⚠ For DirectQuery queries</td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Row-Level Security</td>
+                            <td class="neutral-cell">Defined in Power BI model</td>
+                            <td class="benefit-cell">✓ Can leverage source database RLS (some sources)</td>
+                            <td class="neutral-cell">Defined in Power BI model</td>
+                        </tr>
+                        
+                        <!-- When to Use Section -->
+                        <tr class="section-header">
+                            <td colspan="4"><i class="fas fa-lightbulb"></i> <strong style="color: white;">When to Use</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Ideal For</td>
+                            <td class="when-cell">
+                                • Dataset under 1-10 GB<br>
+                                • Need fastest performance<br>
+                                • Real-time not critical<br>
+                                • Complex DAX needed<br>
+                                • Standard reporting
+                            </td>
+                            <td class="when-cell">
+                                • Near real-time data critical<br>
+                                • Extremely large datasets (TB)<br>
+                                • Optimized database<br>
+                                • Compliance requirements<br>
+                                • Can't fit in memory
+                            </td>
+                            <td class="when-cell">
+                                • Using Composite models<br>
+                                • Small dimension tables<br>
+                                • Optimize DirectQuery<br>
+                                • Span Import/DirectQuery<br>
+                                • Mixed relationships
+                            </td>
+                        </tr>
+                        
+                        <!-- Example Scenario Section -->
+                        <tr class="section-header">
+                            <td colspan="4"><i class="fas fa-code"></i> <strong style="color: white;">Example Scenario</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="category-cell">Real-World Use</td>
+                            <td class="example-cell">
+                                <strong>Sales Dashboard:</strong> 500 MB monthly sales data, nightly refresh. Fast interactive reports with complex year-over-year calculations. 24-hour-old data acceptable.
+                            </td>
+                            <td class="example-cell">
+                                <strong>Live Inventory:</strong> 50 TB warehouse data in Azure SQL. Real-time stock levels. Database has optimized indexes and aggregation tables.
+                            </td>
+                            <td class="example-cell">
+                                <strong>Composite Sales Model:</strong> Product/Customer dimensions in Dual (small, stable). Sales fact table in DirectQuery (large, real-time). Power BI uses cached dims when possible.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="highlight-box">
+            <h3>🎯 Final Thoughts</h3>
+            <p>The best storage mode isn't the one with the most features or the newest technology—it's the one that meets your specific business requirements while delivering the performance your users expect. Start simple with Import, optimize ruthlessly, and only add complexity when it solves a real problem.</p>
+        </div>
+
+        <a href="index.html#blog" class="back-link">← Back to Blog</a>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Lilly Nguyen. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
